@@ -6,7 +6,7 @@ RUN conda install -c conda-forge --quiet --yes \
     'shapely' \
     'netcdf4' \
     'rasterio' \
-    'gdal' \
+    'gdal' && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
