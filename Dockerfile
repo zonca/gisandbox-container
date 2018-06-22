@@ -13,6 +13,6 @@ RUN conda install -c conda-forge --quiet --yes \
 
 RUN pip install cesiumpy \
         --upgrade --no-cache-dir \
-        --upgrade-strategy only-if-needed \
+        --upgrade-strategy only-if-needed && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
