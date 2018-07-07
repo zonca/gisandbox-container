@@ -12,7 +12,7 @@ Automatically built container available at:
 * `cd` into the folder
 * Build it with:
 
-        docker built -t gisandbox-container .
+        bash build.sh
 
 ## Download the container from DockerHub
 
