@@ -27,3 +27,23 @@ RUN conda install --quiet --yes \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
+
+# Netlogo
+
+ENV NETLOGO_HOME /opt/netlogo
+
+USER root
+
+RUN NETLOGO_VERSION="6.0.4" && \
+    wget --quiet https://ccl.northwestern.edu/netlogo/$NETLOGO_VERSION/NetLogo-${NETLOGO_VERSION}-64.tgz && \
+    tar xzf NetLogo-${NETLOGO_VERSION}-64.tgz && \
+    rm NetLogo*.tgz && \
+    mv NetLogo* $NETLOGO_HOME
+
+USER $NB_UID
+
+RUN pip install pyNetLogo jpype1 \
+        --upgrade --no-cache-dir \
+        --upgrade-strategy only-if-needed && \
+    fix-permissions $CONDA_DIR && \
+    fix-permissions /home/$NB_USER
