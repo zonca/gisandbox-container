@@ -34,6 +34,13 @@ ENV NETLOGO_HOME /opt/netlogo
 
 USER root
 
+## Java required by Netlogo
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    default-jre && apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN NETLOGO_VERSION="6.0.4" && \
     wget --quiet https://ccl.northwestern.edu/netlogo/$NETLOGO_VERSION/NetLogo-${NETLOGO_VERSION}-64.tgz && \
     tar xzf NetLogo-${NETLOGO_VERSION}-64.tgz && \
